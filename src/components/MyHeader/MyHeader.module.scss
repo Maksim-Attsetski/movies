@@ -1,0 +1,17 @@
+
+.header {
+    @apply py-5 fixed top-0 left-0 w-screen z-50;
+  .headerBody {
+    @apply flex justify-between align-middle
+  }
+}
+.headerLink {
+  @apply p-5;
+  transition: all linear 0.2s;
+  &:hover {
+    @apply text-dark-text bg-brand-red rounded-md;
+  }
+  &.active {
+    @apply caret-amber-300
+  }
+}

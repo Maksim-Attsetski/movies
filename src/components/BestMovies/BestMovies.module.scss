@@ -1,0 +1,41 @@
+.bestMovies {
+  @apply relative;
+}
+
+.slider {
+}
+
+.film {
+  @apply flex justify-between gap-8 text-right relative;
+
+  &Image {
+    max-height: 90vh;
+  }
+
+  &Content {
+    @apply flex flex-col items-end gap-6;
+
+  }
+
+  &Title {
+    @apply mt-6 text-3xl font-bold;
+  }
+
+  &Rate {
+    @apply flex gap-4;
+  }
+}
+
+.filmControllers {
+  @apply absolute z-10 bottom-8 right-8 flex gap-6 scale-150;
+  &Arrow {
+    @apply text-brand-red;
+  }
+  &Prev,
+  &Next {
+    @apply scale-100;
+  }
+  &Active {
+    @apply scale-150 text-2xl pb-3 font-bold text-brand-red dark:text-brand-red;
+  }
+}
