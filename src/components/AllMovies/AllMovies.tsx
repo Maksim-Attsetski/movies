@@ -1,23 +1,31 @@
-import React, {FC, useMemo} from 'react';
+import React, {FC} from 'react';
 import style from './AllMovies.module.scss';
 import {IMovie} from "../../types/movie";
-import {Image, Typography} from "antd";
-import {movieApi} from "../../redux/services/movieApi";
+import {Image} from 'antd';
+import {Link} from "react-router-dom";
+import {routeName} from "../Layout/routeName";
 
-const AllMovies: FC = () => {
-    const {data, isLoading, isError} = movieApi.useGetAllMovieQuery(15)
+interface IProps {
+    movies: IMovie[],
+}
 
-    const allMovie: IMovie[] = useMemo(() => !data ? [] : data.data.movies, [data])
-
-    if (isLoading) return <div>Loading...</div>
-    if (isError) return <div>Error</div>
-
+const AllMovies: FC<IProps> = ({movies}) => {
     return (
         <div className={style.movies + ' container'}>
-            {allMovie && allMovie.map((movie: IMovie) =>
-                <div key={movie.id}>
-                    <Typography.Title level={5}>{movie.title_long}</Typography.Title>
-                    <Image preview={false} src={movie.medium_cover_image}/>
+            {(movies && movies.length > 0) && movies.map((movie: IMovie) =>
+                <div className={style.film} key={movie.id}>
+                    <Image preview={false} src={movie.medium_cover_image} alt={'Film poster'}/>
+                    <div className={style.film_rate}>
+                        {movie.rating.toFixed(1)}
+                    </div>
+
+                    <div className={style.film_title}>
+                        <span>{movie.title}</span>
+                        {movie.rating >= 2
+                            ? <Link to={routeName.FILMS + movie.id}>Watch</Link>
+                            : <div className={'text-end pl-3'}>not released</div>
+                        }
+                    </div>
                 </div>)}
         </div>
     );

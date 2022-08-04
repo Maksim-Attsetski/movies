@@ -1,0 +1,12 @@
+
+.filmSearch {
+  @apply relative;
+  input {
+    width: clamp(300px, 50vw, 500px);
+    @apply py-2 px-4 rounded-2xl border-0 text-light-text;
+  }
+  &Icon {
+    @apply absolute top-1/2 right-2 cursor-pointer;
+    transform: translate(0, -50%);
+  }
+}

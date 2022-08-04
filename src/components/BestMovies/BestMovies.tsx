@@ -8,6 +8,8 @@ import StarIcon from "../../assets/icons/StarIcon";
 import LeftArrowIcon from "../../assets/icons/LeftArrowIcon";
 import RightArrowIcon from "../../assets/icons/RightArrowIcon";
 import {Navigation} from "swiper";
+import {Link} from "react-router-dom";
+import {routeName} from "../Layout/routeName";
 
 const BestMovies: FC = () => {
     const {data, isLoading, isError} = movieApi.useGetBestMovieQuery(7)
@@ -23,7 +25,7 @@ const BestMovies: FC = () => {
             <Swiper
                 className={style.slider} autoHeight={true} spaceBetween={80}
                 modules={[Navigation]}
-                navigation={{ nextEl: "#swiper-forward", prevEl: "#swiper-back" }}
+                navigation={{nextEl: "#swiper-forward", prevEl: "#swiper-back"}}
                 onSlideChange={({realIndex}) => setSlideIndex(realIndex)}
                 loop={true}
             >
@@ -37,6 +39,7 @@ const BestMovies: FC = () => {
                             <div className={style.filmContent}>
                                 <div className={style.filmTitle}>{movie.title_long}</div>
                                 <p className={style.filmRate}>Official rate: {movie.rating} <StarIcon/></p>
+                                <Link to={routeName.FILMS + movie.id} className={style.filmWatch}>Watch</Link>
                             </div>
                         </div>)}
                     </SwiperSlide>

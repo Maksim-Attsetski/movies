@@ -15,9 +15,9 @@ const MyHeader: FC = () => {
     return (
         <div className={style.header}>
             <div className={style.headerBody + ' container'}>
-                <div>
-                    <NavLink className={style.headerLink} to={HOME}>Home</NavLink>
-                    <NavLink className={style.headerLink} to={FILMS}>Films</NavLink>
+                <div className={style.headerLinks}>
+                    <NavLink className={style.headerLinks_link} to={HOME}>Home</NavLink>
+                    <NavLink className={style.headerLinks_link} to={FILMS}>Films</NavLink>
                 </div>
                 <div className={style.theme}>
                     <button className='btn' onClick={() => dispatch(changeTheme())}>{dark ? 'Dark' : 'Light'}</button>

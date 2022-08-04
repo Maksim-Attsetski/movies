@@ -1,0 +1,46 @@
+
+.film {
+  @apply grid gap-3;
+  grid-template:
+      'img content'
+      'des des';
+  @media (max-width: 640px) {
+    @apply flex flex-col items-center;
+    .film_content {
+      @apply items-center;
+    }
+    .film_title {
+      @apply text-center;
+    }
+  }
+  &_image {
+    width: 300px;
+    grid-area: img;
+    @apply rounded-md overflow-hidden;
+  }
+
+  &_content {
+    grid-area: content;
+    @apply flex flex-col items-end gap-3;
+  }
+
+  &_description {
+    grid-area: des;
+    .divider {
+      @apply border-t-dark-text-hover dark:border-t-light-text-hover
+    }
+  }
+  &_title {
+    @apply text-3xl text-end;
+  }
+  a:hover {
+    @apply text-brand-red;
+  }
+  &_genre {
+    @apply border-2 border-brand-red p-2 rounded-3xl flex justify-center items-center flex-wrap cursor-text;
+    transition: all linear 0.2s;
+    &:hover {
+      @apply border-transparent bg-brand-red text-dark-text;
+    }
+  }
+}

@@ -2,5 +2,5 @@ const project: string = 'movies'
 
 export const routeName = {
     HOME: `/${project}/`,
-    FILMS: `/${project}/films`,
+    FILMS: `/${project}/films/`,
 }

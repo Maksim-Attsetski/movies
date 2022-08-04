@@ -8,13 +8,22 @@
 .film {
   @apply flex justify-between gap-8 text-right relative;
 
+  @media (max-width: 640px) {
+    @apply flex-col gap-4;
+    .filmImage {
+      max-height: 100%;
+    }
+    .filmTitle {
+      @apply text-center;
+    }
+  }
   &Image {
     max-height: 90vh;
+    min-width: 250px;
   }
 
   &Content {
     @apply flex flex-col items-end gap-6;
-
   }
 
   &Title {
@@ -27,7 +36,10 @@
 }
 
 .filmControllers {
-  @apply absolute z-10 bottom-8 right-8 flex gap-6 scale-150;
+  @apply absolute z-10 flex gap-6 bottom-0 right-0 sm:bottom-8 sm:right-8 sm:scale-150;
+  @media (max-width: 640px) {
+      @apply left-0;
+  }
   &Arrow {
     @apply text-brand-red;
   }

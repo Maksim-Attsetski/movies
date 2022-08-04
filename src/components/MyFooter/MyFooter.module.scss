@@ -1,0 +1,21 @@
+
+.footer {
+  @apply py-6 text-center;
+  background-color: rgba(255, 255, 255, 0.2);
+  &Body {
+    @apply flex justify-between items-center;
+    a {
+      @apply p-3 transition-all rounded-xl;
+      &:hover {
+        @apply bg-brand-red;
+      }
+    }
+  }
+}
+
+[data-mode="dark"] {
+  .footer {
+    @apply mt-4;
+    background-color: rgba(0, 0, 0, 0.2);
+  }
+}
