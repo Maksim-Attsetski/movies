@@ -14,7 +14,10 @@ const HomePage: FC = () => {
                 </div>
             </div>
             <Divider/>
-            <BestMovies/>
+            <div className="container">
+                <div className={style.homePage_title + ' ' + style.bestMovies_title}>Best movies</div>
+                <BestMovies/>
+            </div>
         </div>
     );
 };

@@ -4,4 +4,7 @@
     @apply w-full text-center p-2 text-3xl;
     line-height: 40px;
   }
+  .bestMovies_title {
+    @apply text-start mb-3;
+  }
 }
