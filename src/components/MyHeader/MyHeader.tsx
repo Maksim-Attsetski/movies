@@ -6,7 +6,7 @@ import {useTypedDispatch, useTypedSelector} from "../../hooks/useRedux";
 import {changeTheme} from "../../redux/slices/themeSlice";
 
 const MyHeader: FC = () => {
-    const {HOME, FILMS} = routeName
+    const {HOME, FILMS, ABOUT} = routeName
     const dispatch = useTypedDispatch()
     const navigate = useNavigate()
     const [burgerActive, setBurgerActive] = useState<boolean>(false)
@@ -31,6 +31,7 @@ const MyHeader: FC = () => {
         event.preventDefault()
         navigate(to)
         setBurgerActive(false)
+        document.body.classList.remove('overflow-hidden')
     }
 
     return (
@@ -39,10 +40,15 @@ const MyHeader: FC = () => {
                 <div className={burgerClass} onClick={changeBurgerActive}/>
 
                 <div className={style.headerLinks}>
-                    <NavLink onClick={(event) => headerLinkClick(event, routeName.HOME)}
-                             className={style.headerLinks_link} to={HOME}>Home</NavLink>
-                    <NavLink onClick={(event) => headerLinkClick(event, routeName.FILMS)}
-                             className={style.headerLinks_link} to={FILMS}>Films</NavLink>
+                    <NavLink
+                        onClick={(event) => headerLinkClick(event, HOME)}
+                        className={style.headerLinks_link} to={HOME}>Home</NavLink>
+                    <NavLink
+                        onClick={(event) => headerLinkClick(event, FILMS)}
+                        className={style.headerLinks_link} to={FILMS}>Films</NavLink>
+                    <NavLink
+                        onClick={(event) => headerLinkClick(event, ABOUT)}
+                        className={style.headerLinks_link} to={ABOUT}>About</NavLink>
                 </div>
 
                 <div className={style.theme}>
