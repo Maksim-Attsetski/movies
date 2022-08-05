@@ -1,27 +1,58 @@
 
+
+// header, burger, header_body
 .header {
   @apply py-5 fixed top-0 left-0 w-screen z-50;
   background-color: rgba(255, 255, 255, 0.2);
+  height: 88px;
 
-  .headerBody {
+  &Burger {
+    @apply transition-all block sm:hidden w-8 h-8 bg-brand-red border-2 border-transparent rounded-3xl;
+    &:active {
+      @apply scale-150;
+    }
+    &.active {
+      @apply bg-transparent border-brand-red;
+    }
+  }
+  &Body {
     @apply flex justify-between items-center;
   }
+}
 
-  .headerLinks {
-    @apply hidden sm:block;
+// header_links
+.header {
+  &Burger + .headerLinks {
+    top: 88px;
+    left: -200%;
+    @apply fixed sm:relative transition-all sm:top-0 sm:left-0
+    flex flex-col sm:flex-row gap-4
+    w-screen h-screen sm:w-full sm:h-full
+    bg-brand-red sm:bg-transparent;
     &_link {
-      @apply p-5;
-      transition: all linear 0.2s;
-
-      &[aria-current='page'],
+      @apply text-dark-text dark:text-dark-text p-5 transition-all;
       &:hover {
         @apply text-dark-text bg-brand-red rounded-md;
       }
+      &[aria-current='page'] {
+        @apply text-amber-400 bg-brand-red rounded-md;
+      }
     }
+  }
 
-
+  &Burger.active + .headerLinks {
+    @apply left-0 p-6 gap-8;
+    .headerLinks_link {
+      &:active {
+        @apply text-dark-text bg-brand-red rounded-md;
+      }
+      &[aria-current='page'] {
+        @apply text-amber-400 bg-brand-red rounded-md;
+      }
+    }
   }
 }
+
 
 [data-mode="dark"] {
   .header {

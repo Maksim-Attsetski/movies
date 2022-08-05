@@ -20,6 +20,7 @@
   &Image {
     max-height: 90vh;
     min-width: 250px;
+    @apply rounded-md overflow-hidden;
   }
 
   &Content {
@@ -39,6 +40,9 @@
   @apply absolute z-10 flex gap-6 bottom-0 right-0 sm:bottom-8 sm:right-8 sm:scale-150;
   @media (max-width: 640px) {
       @apply left-0;
+  }
+  path {
+    @apply stroke-light-text dark:stroke-dark-text;
   }
   &Arrow {
     @apply text-brand-red;

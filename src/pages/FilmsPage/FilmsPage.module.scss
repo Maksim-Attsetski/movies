@@ -3,10 +3,13 @@
   @apply relative;
   input {
     width: clamp(300px, 50vw, 500px);
-    @apply py-2 px-4 rounded-2xl border-0 text-light-text;
+    @apply py-2 px-4 rounded-2xl border-0 text-light-text dark:text-dark-text bg-light-block dark:bg-dark-block;
   }
   &Icon {
     @apply absolute top-1/2 right-2 cursor-pointer;
+    path {
+      @apply stroke-light-text dark:stroke-dark-text;
+    }
     transform: translate(0, -50%);
   }
 }
