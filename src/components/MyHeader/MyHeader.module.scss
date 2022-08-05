@@ -29,13 +29,11 @@
     flex flex-col sm:flex-row gap-4
     w-screen h-screen sm:w-full sm:h-full
     bg-brand-red sm:bg-transparent;
-    &_link {
-      @apply text-dark-text dark:text-dark-text p-5 transition-all;
-      &:hover {
-        @apply text-dark-text bg-brand-red rounded-md;
-      }
+    .headerLinks_link {
+      @apply dark:text-dark-text text-light-text px-4 py-2 transition-all;
+      &:hover,
       &[aria-current='page'] {
-        @apply text-amber-400 bg-brand-red rounded-md;
+        @apply text-dark-text dark:text-dark-text bg-brand-red rounded-xl;
       }
     }
   }

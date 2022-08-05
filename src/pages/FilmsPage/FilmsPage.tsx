@@ -28,7 +28,6 @@ const FilmsPage: FC = () => {
 
     return (
         <div className={style.filmsPage}>
-            <BestMovies/>
             <br/>
             <form onSubmit={searchMovies} className='container'>
                 <label className={style.filmSearch}>

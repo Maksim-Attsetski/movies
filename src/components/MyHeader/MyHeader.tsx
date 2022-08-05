@@ -22,7 +22,7 @@ const MyHeader: FC = () => {
     }
 
     window.addEventListener('resize', () => {
-        if(window.innerWidth < 640) return
+        if (window.innerWidth < 640) return
         setBurgerActive(false)
     })
 
