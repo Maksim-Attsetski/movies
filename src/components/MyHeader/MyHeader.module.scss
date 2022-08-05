@@ -7,7 +7,7 @@
   height: 88px;
 
   &Burger {
-    @apply transition-all block sm:hidden w-8 h-8 bg-brand-red border-2 border-transparent rounded-3xl;
+    @apply transition-all block sm:hidden w-8 h-8 bg-brand-red border-2 border-transparent rounded-3xl cursor-pointer;
     &:active {
       @apply scale-150;
     }

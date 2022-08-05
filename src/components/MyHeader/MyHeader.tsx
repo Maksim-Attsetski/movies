@@ -1,6 +1,6 @@
 import React, {FC, useMemo, useState} from 'react';
 import style from './MyHeader.module.scss';
-import {NavLink} from "react-router-dom";
+import {NavLink, useNavigate} from "react-router-dom";
 import {routeName} from "../Layout/routeName";
 import {useTypedDispatch, useTypedSelector} from "../../hooks/useRedux";
 import {changeTheme} from "../../redux/slices/themeSlice";
@@ -8,6 +8,7 @@ import {changeTheme} from "../../redux/slices/themeSlice";
 const MyHeader: FC = () => {
     const {HOME, FILMS} = routeName
     const dispatch = useTypedDispatch()
+    const navigate = useNavigate()
     const [burgerActive, setBurgerActive] = useState<boolean>(false)
     const {dark} = useTypedSelector(state => state.theme)
 
@@ -26,14 +27,22 @@ const MyHeader: FC = () => {
         setBurgerActive(false)
     })
 
+    const headerLinkClick = (event: any, to: string) => {
+        event.preventDefault()
+        navigate(to)
+        setBurgerActive(false)
+    }
+
     return (
         <div className={style.header}>
             <div className={style.headerBody + ' container'}>
                 <div className={burgerClass} onClick={changeBurgerActive}/>
 
                 <div className={style.headerLinks}>
-                    <NavLink className={style.headerLinks_link} to={HOME}>Home</NavLink>
-                    <NavLink className={style.headerLinks_link} to={FILMS}>Films</NavLink>
+                    <NavLink onClick={(event) => headerLinkClick(event, routeName.HOME)}
+                             className={style.headerLinks_link} to={HOME}>Home</NavLink>
+                    <NavLink onClick={(event) => headerLinkClick(event, routeName.FILMS)}
+                             className={style.headerLinks_link} to={FILMS}>Films</NavLink>
                 </div>
 
                 <div className={style.theme}>

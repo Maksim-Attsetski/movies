@@ -15,18 +15,11 @@ const Film: FC = () => {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const film: IMovie | null = useMemo(() => data ? data.data.movie : null, [data])
 
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    useEffect(() => {
-        console.log(film)
-    }, [data])
-
     return (
         <Loading isLoading={isLoading} isError={isError}>
             <div className={style.film + ' container'}>
                 <Image preview={false} src={film?.medium_cover_image} className={style.film_image}/>
                 <div className={style.film_content}>
-                    {/*<a href={`https://youtu.be/${movie.yt_trailer_code}`} target='_blank'>youtube</a>*/}
-
                     {/*<iframe width="420" height="315"*/}
                     {/*        src={`https://www.youtube.com/embed/${movie.yt_trailer_code}`}>*/}
                     {/*</iframe>*/}
