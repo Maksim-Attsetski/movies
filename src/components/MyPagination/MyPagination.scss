@@ -1,0 +1,30 @@
+
+.ant-pagination {
+  &-item {
+    @apply bg-transparent;
+    a {
+      @apply text-light-text dark:text-dark-text;
+    }
+
+    &:hover {
+      @apply border-brand-red;
+    }
+
+    &-active {
+      @apply border-brand-red;
+      &:hover {
+        @apply border-brand-red;
+      }
+
+      a {
+        @apply text-brand-red;
+      }
+    }
+  }
+
+  .ant-pagination-item-ellipsis,
+  .ant-pagination-item-link {
+    line-height: 1;
+    @apply text-light-text dark:text-dark-text bg-transparent;
+  }
+}

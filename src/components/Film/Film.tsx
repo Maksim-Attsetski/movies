@@ -45,7 +45,7 @@ const Film: FC = () => {
                        target='_blank'
                     >Watch trailer on YouTube
                     </a>
-                    <div className={'flex gap-3'}>
+                    <div className={'flex gap-3 flex-wrap'}>
                         {film?.genres && film?.genres.map((genre) =>
                             <div key={genre} className={style.film_genre}>{genre}</div>
                         )}

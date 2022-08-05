@@ -1,28 +1,40 @@
 import React, {FC, FormEvent, useEffect, useMemo, useState} from 'react';
 import style from './FilmsPage.module.scss';
-import {Divider} from "antd";
+import {Divider, Pagination} from "antd";
 import AllMovies from "../../components/AllMovies/AllMovies";
 import {movieApi} from "../../redux/services/movieApi";
 import {IMovie} from "../../types/movie";
 import Loading from "../../components/Loading/Loading";
 import SearchIcon from "../../assets/icons/SearchIcon";
 import BestMovies from "../../components/BestMovies/BestMovies";
+import MyPagination from "../../components/MyPagination/MyPagination";
 
 const FilmsPage: FC = () => {
-    const [page, setPage] = useState<number>(1)
+    const [pageSetting, setPageSetting] = useState<{page: number, total: number}>({
+        page: 1, total: 10,
+    })
     const [search, setSearch] = useState<string>('')
     const [searchMovie, {data, isLoading, isError}] = movieApi.useSearchMovieMutation()
+    const [movies, setMovies] = useState<IMovie[]>([])
 
     const searchMovies = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault()
-        searchMovie({query: search, page})
+        searchMovie({query: search, page: pageSetting.page})
     }
 
-    useEffect(() => {
-        searchMovie({query: search, page})
-    }, [])
+    useEffect(() => { searchMovie({query: search, page: pageSetting.page}) }, [])
 
-    const movies: IMovie[] = useMemo(() => data ? data.data.movies : [], [data])
+    useEffect(() => {
+        if(!data) return
+
+        setMovies(data.data.movies)
+        setPageSetting({...pageSetting, total: data.data.movie_count})
+    }, [data])
+
+    const changePage = (currentPage: number): void => {
+        setPageSetting({...pageSetting, page: currentPage})
+        searchMovie({query: search, page: currentPage})
+    }
 
     if (isError) return <div>Error</div>
 
@@ -44,6 +56,11 @@ const FilmsPage: FC = () => {
             <Loading isLoading={isLoading} isError={isError}>
                 <AllMovies movies={movies}/>
             </Loading>
+            <br/><br/>
+
+            <div className={'w-screen flex justify-center'}>
+                <MyPagination total={pageSetting.total} changePage={changePage} />
+            </div>
         </div>
     );
 };
