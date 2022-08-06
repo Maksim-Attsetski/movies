@@ -22,12 +22,12 @@ const AboutPage: FC = () => {
                             target={'_blank'}> Maksim Attsetski</a>
             </div>
             <div className={style.aboutPage_item}>
-                Applied technology (main): {technologies.map((technology, index) =>
-                <div key={index}>
-                    {index === 0 ? '' : ', '}
-                    <a href="#">{technology}</a>
-                </div>
-            )}
+                Applied technology (main):
+                {technologies.map((technology, index) =>
+                    <span key={index}>
+                        {index === 0 ? '' : ', '} <a href="#">{technology}</a>
+                    </span>
+                )}
             </div>
         </div>
     );

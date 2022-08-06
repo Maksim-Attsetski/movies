@@ -2,13 +2,13 @@
 .aboutPage {
   @apply flex flex-col gap-6 sm:gap-3;
   &_item {
-    @apply flex flex-wrap gap-1 sm:gap-2 items-center;
+    @apply flex flex-wrap gap-y-4 gap-x-2 items-center;
     a {
       @apply py-2 px-3 mx-1 w-max text-dark-text bg-brand-red rounded-xl;
     }
 
     & > a:hover,
-    & > div:hover {
+    & > span:hover {
       @apply translate-y-0.5;
     }
   }

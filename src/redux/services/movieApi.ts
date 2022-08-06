@@ -1,9 +1,6 @@
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
-import {IMovie} from "../../types/movie";
 
 const baseUrl: string = 'https://yts.mx/api/v2/';
-// const baseUrl = 'https://api.kinopoisk.dev/';
-const token = 'VVXRYDT-FDZ4Q5Z-HPHEPZA-2BGSDSQ';
 
 export const movieApi = createApi({
     reducerPath: 'movieApi',

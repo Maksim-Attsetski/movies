@@ -48,7 +48,7 @@ body {
 .btn {
   letter-spacing: 1px;
   @apply rounded-lg text-dark-text bg-brand-red py-3 px-6 font-bold border-0 shadow-light-btn
-  dark:shadow-dark-btn;
+  dark:shadow-dark-btn transition-all;
   &:active {
     @apply shadow-light-btn-active translate-y-0.5
     dark:shadow-dark-btn-active;

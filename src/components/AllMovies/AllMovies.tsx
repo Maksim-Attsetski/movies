@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, useEffect} from 'react';
 import style from './AllMovies.module.scss';
 import {IMovie} from "../../types/movie";
 import {Image} from 'antd';
@@ -6,12 +6,12 @@ import {Link} from "react-router-dom";
 import {routeName} from "../Layout/routeName";
 import {fadeAnim} from "../../animations/fade-anim";
 import {AnimatePresence, motion} from "framer-motion";
+import {useTypedSelector} from "../../hooks/useRedux";
 
-interface IProps {
-    movies: IMovie[],
-}
 
-const AllMovies: FC<IProps> = ({movies}) => {
+const AllMovies: FC = () => {
+    const {movies} = useTypedSelector(state => state.movies)
+
     return (
         <div className={style.movies + ' container'}>
             <AnimatePresence>

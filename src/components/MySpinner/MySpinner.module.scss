@@ -1,0 +1,61 @@
+$size: 40px;
+
+.ellipsis {
+  @apply absolute top-2/5 left-1/4 sm:left-2/5;
+
+  div {
+    @apply absolute rounded-circle bg-dark-block dark:bg-light-block;
+    top: 33px;
+    width: $size;
+    height: $size;
+    animation-timing-function: cubic-bezier(0, 1, 1, 0);
+
+    &:nth-child(1) {
+      left: $size * 0.615;
+      animation: lds-ellipsis1 0.6s infinite;
+    }
+
+    &:nth-child(2) {
+      left: $size * 0.615;
+      animation: lds-ellipsis2 0.6s infinite;
+    }
+
+    &:nth-child(3) {
+      left: $size * 2.46;
+      animation: lds-ellipsis2 0.6s infinite;
+    }
+
+    &:nth-child(4) {
+      left: $size * 4.6;
+      animation: lds-ellipsis3 0.6s infinite;
+    }
+  }
+}
+
+
+@keyframes lds-ellipsis1 {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes lds-ellipsis3 {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+
+@keyframes lds-ellipsis2 {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate($size * 1.84, 0);
+  }
+}

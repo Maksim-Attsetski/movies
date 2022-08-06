@@ -27,37 +27,3 @@ export interface IMovie {
     year: number,
     yt_trailer_code: string,
 }
-
-// export interface IMovie {
-//     alternativeName: any
-//     description: string,
-//     enName: any,
-//     externalId: { imdb: any, _id: string, },
-//     id: 471696
-//     movieLength: number,
-//     name: string,
-//     names: any[],
-//     0: {_id: string, name: string},
-//     length: 1,
-//     poster: {
-//         previewUrl: string,
-//         url: string,
-//         _id: string,
-//     },
-//     url: string,
-//     _id: string,
-//     rating: IRating,
-//     shortDescription: any
-//     type: string,
-//     votes: IRating,
-//     year: number,
-// }
-//
-// interface IRating {
-//     await: number,
-//     filmCritics: number,
-//     imdb: number,
-//     kp: number,
-//     russianFilmCritics: number,
-//     _id: string,
-// }

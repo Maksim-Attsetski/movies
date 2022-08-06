@@ -28,7 +28,10 @@ module.exports = {
       },
       borderRadius: {
         'circle': '50%',
-      }
+      },
+      inset: {
+        '2/5': '40%',
+      },
     },
   },
   plugins: [],

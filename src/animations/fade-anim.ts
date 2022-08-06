@@ -9,6 +9,11 @@ export const fadeAnim = {
         scale: 1,
         opacity: 1,
         y: 0,
+        transition: {
+            type: 'spring',
+            stiffness: 100,
+            duration: 0.3,
+        }
     },
     exit: {
         scale: 0.8,

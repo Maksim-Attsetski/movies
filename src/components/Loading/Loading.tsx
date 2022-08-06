@@ -1,4 +1,5 @@
 import React, {FC, ReactNode} from 'react';
+import MySpinner from "../MySpinner/MySpinner";
 
 interface IProps {
     isLoading: boolean,
@@ -8,7 +9,7 @@ interface IProps {
 
 const Loading: FC<IProps> = ({children, isLoading, isError}) => {
 
-    if (isLoading) return <div className='container'>LOADING...</div>
+    if (isLoading) return <div className='container'><MySpinner/></div>
     if (isError) return <div className='container'><mark>ERROR</mark></div>
 
     return <>{children}</>

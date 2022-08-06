@@ -7,37 +7,36 @@ import {IMovie} from "../../types/movie";
 import Loading from "../../components/Loading/Loading";
 import SearchIcon from "../../assets/icons/SearchIcon";
 import MyPagination from "../../components/MyPagination/MyPagination";
+import {useTypedDispatch, useTypedSelector} from "../../hooks/useRedux";
+import {changePage, changeTotalMoviesCount, setAllMovies} from "../../redux/slices/movieSlice";
 
 const FilmsPage: FC = () => {
-    const [pageSetting, setPageSetting] = useState<{ page: number, total: number }>({
-        page: 1, total: 10,
-    })
     const [search, setSearch] = useState<string>('')
     const [searchMovie, {data, isLoading, isError}] = movieApi.useSearchMovieMutation()
-    const [movies, setMovies] = useState<IMovie[]>([])
+    const dispatch = useTypedDispatch()
+    const {page, total} = useTypedSelector(state => state.movies)
 
     const searchMovies = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault()
-        searchMovie({query: search, page: pageSetting.page})
+        searchMovie({query: search, page})
     }
 
     useEffect(() => {
-        searchMovie({query: search, page: pageSetting.page})
+        searchMovie({query: search, page})
     }, [])
 
     useEffect(() => {
         if (!data) return
+        const {movies, movie_count} = data.data
 
-        setMovies(data.data.movies)
-        setPageSetting({...pageSetting, total: data.data.movie_count})
+        dispatch(setAllMovies(movies))
+        dispatch(changeTotalMoviesCount(movie_count))
     }, [data])
 
-    const changePage = (currentPage: number): void => {
-        setPageSetting({...pageSetting, page: currentPage})
+    const handleChangePage = (currentPage: number): void => {
+        dispatch(changePage(currentPage))
         searchMovie({query: search, page: currentPage})
     }
-
-    if (isError) return <div>Error</div>
 
     return (
         <div className={style.filmsPage}>
@@ -54,13 +53,14 @@ const FilmsPage: FC = () => {
                 </label>
             </form>
             <br/>
-            {pageSetting.total > 20 && <div className={'w-screen flex justify-center'}>
-                <MyPagination total={pageSetting.total} changePage={changePage}/>
+
+            {total > 20 && <div className={'w-screen flex justify-center'}>
+                <MyPagination total={total} changePage={handleChangePage}/>
             </div>}
+
             <Divider/>
-            <Loading isLoading={isLoading} isError={isError}>
-                <AllMovies movies={movies}/>
-            </Loading>
+
+            <Loading isLoading={isLoading} isError={isError}><AllMovies/></Loading>
             <br/><br/>
         </div>
     );
