@@ -1,0 +1,11 @@
+
+.toTop {
+  @apply fixed bottom-2 right-2 scale-0 transition-all z-40;
+  &.active {
+    @apply scale-100;
+  }
+  svg {
+    width: calc(18px + 3vmin);
+    height: calc(18px + 3vmin);
+  }
+}

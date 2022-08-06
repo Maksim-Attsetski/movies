@@ -15,9 +15,9 @@ const AboutPage: FC = () => {
             </div>
             <div className={style.aboutPage_item}>
                 Applied technology (main): <a href="#"> React (Redux)</a>,
-                <a href="#"> Ant Design</a>,
-                <a href="#"> Tailwind CSS</a>,
-                <a href="#"> TypeScript</a>
+                <a href="#">Ant Design</a>,
+                <a href="#">Tailwind CSS</a>,
+                <a href="#">TypeScript</a>
             </div>
         </div>
     );
