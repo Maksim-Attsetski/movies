@@ -1,16 +1,15 @@
-import React, {FC, FormEvent, useEffect, useMemo, useState} from 'react';
+import React, {FC, FormEvent, useEffect, useState} from 'react';
 import style from './FilmsPage.module.scss';
-import {Divider, Pagination} from "antd";
+import {Divider} from "antd";
 import AllMovies from "../../components/AllMovies/AllMovies";
 import {movieApi} from "../../redux/services/movieApi";
 import {IMovie} from "../../types/movie";
 import Loading from "../../components/Loading/Loading";
 import SearchIcon from "../../assets/icons/SearchIcon";
-import BestMovies from "../../components/BestMovies/BestMovies";
 import MyPagination from "../../components/MyPagination/MyPagination";
 
 const FilmsPage: FC = () => {
-    const [pageSetting, setPageSetting] = useState<{page: number, total: number}>({
+    const [pageSetting, setPageSetting] = useState<{ page: number, total: number }>({
         page: 1, total: 10,
     })
     const [search, setSearch] = useState<string>('')
@@ -22,10 +21,12 @@ const FilmsPage: FC = () => {
         searchMovie({query: search, page: pageSetting.page})
     }
 
-    useEffect(() => { searchMovie({query: search, page: pageSetting.page}) }, [])
+    useEffect(() => {
+        searchMovie({query: search, page: pageSetting.page})
+    }, [])
 
     useEffect(() => {
-        if(!data) return
+        if (!data) return
 
         setMovies(data.data.movies)
         setPageSetting({...pageSetting, total: data.data.movie_count})
@@ -52,15 +53,15 @@ const FilmsPage: FC = () => {
                     </div>
                 </label>
             </form>
+            <br/>
+            {pageSetting.total > 20 && <div className={'w-screen flex justify-center'}>
+                <MyPagination total={pageSetting.total} changePage={changePage}/>
+            </div>}
             <Divider/>
             <Loading isLoading={isLoading} isError={isError}>
                 <AllMovies movies={movies}/>
             </Loading>
             <br/><br/>
-
-            <div className={'w-screen flex justify-center'}>
-                <MyPagination total={pageSetting.total} changePage={changePage} />
-            </div>
         </div>
     );
 };

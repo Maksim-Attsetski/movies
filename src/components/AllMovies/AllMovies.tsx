@@ -15,7 +15,7 @@ const AllMovies: FC<IProps> = ({movies}) => {
     return (
         <div className={style.movies + ' container'}>
             <AnimatePresence>
-                {(movies && movies.length > 0) && movies.map((movie: IMovie) =>
+                {movies && movies.map((movie: IMovie) =>
                     <motion.div className={style.film} {...fadeAnim} key={movie.id}>
                         <Image preview={false} src={movie.medium_cover_image} alt={'Film poster'}/>
                         <div className={style.film_rate}>
@@ -30,6 +30,7 @@ const AllMovies: FC<IProps> = ({movies}) => {
                             }
                         </div>
                     </motion.div>)}
+                {(movies && movies.length === 0) && <div>No matches</div>}
             </AnimatePresence>
         </div>
     );
