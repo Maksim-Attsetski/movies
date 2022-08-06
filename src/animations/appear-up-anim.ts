@@ -1,11 +1,10 @@
 
-
-export const appearUp = {
+export const appearUpAnim = {
     initial: {
         x: -200,
         opacity: 0.4,
     },
-    animate: {
+    whileInView: {
         x: 0,
         opacity: 1,
     },

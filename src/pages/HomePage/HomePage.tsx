@@ -2,14 +2,14 @@ import React, {FC} from 'react';
 import style from './HomePage.module.scss';
 import BestMovies from "../../components/BestMovies/BestMovies";
 import {Divider} from "antd";
-import {appearUp} from "../../animations/appear-up";
+import {appearUpAnim} from "../../animations/appear-up-anim";
 import { motion } from 'framer-motion';
 
 const HomePage: FC = () => {
     return (
         <div className={style.homePage}>
             <div className={style.homePageBody + ' container'}>
-                <motion.div {...appearUp} className={style.homePage_title}>
+                <motion.div {...appearUpAnim} className={style.homePage_title}>
                     Welcome!
                     <br/>
                     Your can search any movies here.

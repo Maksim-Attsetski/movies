@@ -1,10 +1,18 @@
+import {motion} from 'framer-motion';
 import React, {FC} from 'react';
 import style from './AboutPage.module.scss';
+import {appearUpAnim} from "../../animations/appear-up-anim";
 
 const AboutPage: FC = () => {
+    const technologies: string[] = [
+        'React (Redux)', 'Ant Design', 'Tailwind CSS', 'TypeScript', 'Framer motion',
+    ]
+
     return (
         <div className={style.aboutPage + ' container'}>
-            <div className={style.aboutPage_title}>Something interesting about my site</div>
+            <motion.div {...appearUpAnim} className={style.aboutPage_title}>
+                Something interesting about my site
+            </motion.div>
             <div className={style.aboutPage_item}>
                 This site work on Web API:
                 <a href="https://yts.mx/api" rel="noreferrer" target={'_blank'}> yts.mx</a>
@@ -14,10 +22,12 @@ const AboutPage: FC = () => {
                             target={'_blank'}> Maksim Attsetski</a>
             </div>
             <div className={style.aboutPage_item}>
-                Applied technology (main): <a href="#"> React (Redux)</a>,
-                <a href="#">Ant Design</a>,
-                <a href="#">Tailwind CSS</a>,
-                <a href="#">TypeScript</a>
+                Applied technology (main): {technologies.map((technology, index) =>
+                <div key={index}>
+                    {index === 0 ? '' : ', '}
+                    <a href="#">{technology}</a>
+                </div>
+            )}
             </div>
         </div>
     );
