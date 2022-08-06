@@ -1,7 +1,7 @@
 import {motion} from 'framer-motion';
 import React, {FC} from 'react';
 import style from './AboutPage.module.scss';
-import {appearUpAnim} from "../../animations/appear-up-anim";
+import {appearRightAnim} from "../../animations/appear-right-anim";
 
 const AboutPage: FC = () => {
     const technologies: string[] = [
@@ -10,7 +10,7 @@ const AboutPage: FC = () => {
 
     return (
         <div className={style.aboutPage + ' container'}>
-            <motion.div {...appearUpAnim} className={style.aboutPage_title}>
+            <motion.div {...appearRightAnim} className={style.aboutPage_title}>
                 Something interesting about my site
             </motion.div>
             <div className={style.aboutPage_item}>
