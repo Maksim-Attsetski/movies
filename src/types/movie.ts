@@ -41,3 +41,6 @@ export interface ITorrent {
     type: string,
     url: string,
 }
+
+export type sortOptionsType = 'title' | 'year' | 'rating' | 'like_count' | 'download_count'
+export type orderByType = 'desc' | 'asc'

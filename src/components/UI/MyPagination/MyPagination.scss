@@ -8,7 +8,7 @@
   &-item {
     @apply bg-transparent rounded-xl;
     span, a {
-      @apply text-light-text dark:text-dark-text;
+      @apply text-light-text dark:text-dark-text ;
     }
 
     &:hover {

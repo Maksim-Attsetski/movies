@@ -32,7 +32,7 @@ body {
 
   a, button {
     @apply underline-offset-0 text-light-text
-      dark:text-dark-text;
+    dark:text-dark-text;
   }
 
   .container {
@@ -47,8 +47,7 @@ body {
 
 .btn {
   letter-spacing: 1px;
-  @apply rounded-lg text-dark-text bg-brand-red py-3 px-6 font-bold border-0 shadow-light-btn
-  dark:shadow-dark-btn transition-all;
+  @apply rounded-lg text-dark-text bg-brand-red py-3 px-6 font-bold border-0 transition-all shadow-md shadow-gray-500;
   &:active {
     @apply shadow-light-btn-active translate-y-0.5
     dark:shadow-dark-btn-active;

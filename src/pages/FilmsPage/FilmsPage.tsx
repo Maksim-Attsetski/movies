@@ -3,12 +3,12 @@ import style from './FilmsPage.module.scss';
 import {Divider} from "antd";
 import AllMovies from "../../components/AllMovies/AllMovies";
 import {movieApi} from "../../redux/services/movieApi";
-import {IMovie} from "../../types/movie";
 import Loading from "../../components/UI/Loading/Loading";
 import SearchIcon from "../../assets/icons/SearchIcon";
 import MyPagination from "../../components/UI/MyPagination/MyPagination";
 import {useTypedDispatch, useTypedSelector} from "../../hooks/useRedux";
 import {changePage, changeTotalMoviesCount, setAllMovies} from "../../redux/slices/movieSlice";
+import MoviesSortList from "../../components/MoviesSortList/MoviesSortList";
 
 const FilmsPage: FC = () => {
     const [search, setSearch] = useState<string>('')
@@ -39,9 +39,9 @@ const FilmsPage: FC = () => {
     }
 
     return (
-        <div className={style.filmsPage}>
+        <div className='container'>
             <br/>
-            <form onSubmit={searchMovies} className='container'>
+            <form onSubmit={searchMovies} className={style.filmOptions}>
                 <label className={style.filmSearch}>
                     <input
                         type="text" value={search} placeholder={'Search...'}
@@ -51,12 +51,13 @@ const FilmsPage: FC = () => {
                         <SearchIcon/>
                     </div>
                 </label>
+                <MoviesSortList/>
             </form>
             <br/>
 
-            {total > 20 && <div className={'w-screen flex justify-center'}>
+            <div>
                 <MyPagination total={total} changePage={handleChangePage}/>
-            </div>}
+            </div>
 
             <Divider/>
 
