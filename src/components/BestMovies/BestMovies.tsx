@@ -6,12 +6,14 @@ import {movieApi} from "../../redux/services/movieApi";
 import StarIcon from "../../assets/icons/StarIcon";
 import LeftArrowIcon from "../../assets/icons/LeftArrowIcon";
 import RightArrowIcon from "../../assets/icons/RightArrowIcon";
-import {Navigation} from "swiper";
+import SwiperCore, {Autoplay, Navigation} from "swiper";
 import {Link} from "react-router-dom";
 import {routeName} from "../Layout/routeName";
 import Loading from "../UI/Loading/Loading";
 import {useTypedDispatch, useTypedSelector} from "../../hooks/useRedux";
 import {setBestMovies} from "../../redux/slices/movieSlice";
+
+SwiperCore.use([Autoplay]);
 
 const BestMovies: FC = () => {
     const {data, isLoading, isError} = movieApi.useGetBestMovieQuery(7)
@@ -30,10 +32,10 @@ const BestMovies: FC = () => {
             <div className={style.bestMovies + ' container'}>
                 <Swiper
                     className={style.slider} autoHeight={true} spaceBetween={80}
-                    modules={[Navigation]}
+                    modules={[Navigation]} loop={true}
                     navigation={{nextEl: "#swiper-forward", prevEl: "#swiper-back"}}
                     onSlideChange={({realIndex}) => setSlideIndex(realIndex)}
-                    loop={true}
+                    autoplay={{delay: slideIndex === 6 ? 400 : 3500, pauseOnMouseEnter: slideIndex !== 6}}
                 >
                     {bestMovies.map((movie) =>
                         <SwiperSlide key={movie.id}>
@@ -59,8 +61,8 @@ const BestMovies: FC = () => {
                         <LeftArrowIcon/>
                     </button>
 
-                    <button className={style.filmControllersPrev}>{
-                        slideIndex + 1 > 1 ? slideIndex : 7}
+                    <button className={style.filmControllersPrev}>
+                        {slideIndex + 1 > 1 ? slideIndex : 7}
                     </button>
 
                     <button className={style.filmControllersActive}>{slideIndex + 1}</button>
