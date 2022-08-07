@@ -3,6 +3,13 @@ import {orderByType, sortOptionsType} from "../../types/movie";
 
 const baseUrl: string = 'https://yts.mx/api/v2/';
 
+interface IRequestParams {
+    sort: sortOptionsType,
+    orderBy?: orderByType,
+    page: number,
+    query?: string,
+}
+
 export const movieApi = createApi({
     reducerPath: 'movieApi',
     baseQuery: fetchBaseQuery({baseUrl}),
@@ -15,17 +22,17 @@ export const movieApi = createApi({
             }),
             providesTags: result => ['Movies']
         }),
-        searchMovie: build.mutation<any, { query: string, page: number }>({
-            query: ({query = '', page = 1}) => ({
+        searchMovie: build.mutation<any, IRequestParams>({
+            query: ({query = '', page = 1, orderBy = 'desc', sort = 'year'}) => ({
                 url: 'list_movies.json',
-                params: {query_term: query, page, sort_by: 'year'},
+                params: {query_term: query, page, sort_by: sort, order_by: orderBy},
             }),
             invalidatesTags: ['Movies'],
         }),
-        sortMovie: build.mutation<any, { sort: sortOptionsType, order: orderByType, page: number }>({
-            query: ({sort = 'year', order = 'desc', page = 1}) => ({
+        sortMovie: build.mutation<any, IRequestParams>({
+            query: ({sort = 'year', orderBy = 'desc', page = 1}) => ({
                 url: 'list_movies.json',
-                params: {sort_by: sort, order_by: order, page},
+                params: {sort_by: sort, order_by: orderBy, page},
             }),
             invalidatesTags: ['Movies'],
         }),

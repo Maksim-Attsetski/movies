@@ -14,15 +14,15 @@ const FilmsPage: FC = () => {
     const [search, setSearch] = useState<string>('')
     const [searchMovie, {data, isLoading, isError}] = movieApi.useSearchMovieMutation()
     const dispatch = useTypedDispatch()
-    const {page, total} = useTypedSelector(state => state.movies)
+    const {page, total, sort, orderBy} = useTypedSelector(state => state.movies)
 
     const searchMovies = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault()
-        searchMovie({query: search, page})
+        searchMovie({query: search, page, sort, orderBy})
     }
 
     useEffect(() => {
-        searchMovie({query: search, page})
+        searchMovie({query: search, page, sort, orderBy})
     }, [])
 
     useEffect(() => {
@@ -35,7 +35,7 @@ const FilmsPage: FC = () => {
 
     const handleChangePage = (currentPage: number): void => {
         dispatch(changePage(currentPage))
-        searchMovie({query: search, page: currentPage})
+        searchMovie({query: search, page: currentPage, sort, orderBy})
     }
 
     return (

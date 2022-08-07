@@ -1,4 +1,4 @@
-import {IMovie} from "../../types/movie";
+import {IMovie, orderByType, sortOptionsType} from "../../types/movie";
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 
 interface IState {
@@ -6,7 +6,9 @@ interface IState {
     bestMovies: IMovie[],
     page: number,
     total: number,
-    limit: number
+    limit: number,
+    orderBy: orderByType,
+    sort: sortOptionsType,
 }
 
 const initialState: IState = {
@@ -15,6 +17,8 @@ const initialState: IState = {
     total: 0,
     limit: 20,
     page: 1,
+    sort: 'year',
+    orderBy: 'desc',
 }
 
 const movieSlice = createSlice({
@@ -33,8 +37,12 @@ const movieSlice = createSlice({
         changeTotalMoviesCount: (state, action: PayloadAction<number>) => {
             state.total = action.payload
         },
+        changeSortValues: (state, action: PayloadAction<{ sort: sortOptionsType, orderBY: orderByType }>) => {
+            state.orderBy = action.payload.orderBY
+            state.sort = action.payload.sort
+        },
     }
 })
 
 export default movieSlice.reducer
-export const {setAllMovies, setBestMovies, changeTotalMoviesCount, changePage} = movieSlice.actions
+export const {setAllMovies, setBestMovies, changeTotalMoviesCount, changePage, changeSortValues} = movieSlice.actions

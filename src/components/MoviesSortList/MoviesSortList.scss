@@ -1,15 +1,21 @@
 
-.movieSortList {
-  width: 300px;
-}
-
-.ant-select:not(.ant-select-customize-input) .ant-select-selector {
-  @apply rounded-xl bg-light-block dark:bg-dark-block border-transparent;
-}
-.ant-select .ant-select-selection-item {
-  @apply text-light-text dark:text-dark-text
-}
-.ant-select-focused:not(.ant-select-disabled).ant-select:not(.ant-select-customize-input) .ant-select-selector,
-.ant-select:not(.ant-select-disabled):hover .ant-select-selector {
-  @apply border-brand-red shadow-sm shadow-brand-red;
+.ant-dropdown-trigger {
+  @apply transition-all;
+  .dropdown-span {
+    @apply border-b-2 border-brand-red rounded-sm;
+  }
+  &:hover {
+    @apply text-brand-red;
+    .dropdown-span {
+      @apply border-light-text dark:border-dark-text;
+    }
+  }
+  .ant-space-item .anticon-down {
+    @apply -translate-y-0.5 transition-all;
+  }
+  &.ant-dropdown-open {
+    .ant-space-item .anticon-down {
+      @apply rotate-180 -translate-y-1;
+    }
+  }
 }

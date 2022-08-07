@@ -1,12 +1,17 @@
 import React, {FC, useEffect, useState} from 'react';
 import './MoviesSortList.scss';
-import {Select} from "antd";
+import {Dropdown, Menu, Space} from "antd";
+import {DownOutlined} from '@ant-design/icons';
 import {orderByType, sortOptionsType} from "../../types/movie";
 import {movieApi} from "../../redux/services/movieApi";
-import {changePage, changeTotalMoviesCount, setAllMovies} from "../../redux/slices/movieSlice";
+import {
+    changePage,
+    changeSortValues,
+    changeTotalMoviesCount,
+    setAllMovies
+} from "../../redux/slices/movieSlice";
 import {useTypedDispatch, useTypedSelector} from "../../hooks/useRedux";
 
-const {Option, OptGroup} = Select;
 type sortOptionsText = 'Title' | 'Year' | 'Rating' | 'Likes' | 'Downloads';
 
 interface ISortOptions {
@@ -15,17 +20,19 @@ interface ISortOptions {
 }
 
 const MoviesSortList: FC = () => {
-    const [sortValue, setSortValue] = useState<sortOptionsText>('Year')
+    const [sortText, setSortText] = useState<sortOptionsText>('Year')
     const dispatch = useTypedDispatch()
     const [sortMovies, {data}] = movieApi.useSortMovieMutation()
     const {page} = useTypedSelector(state => state.movies)
 
-    const handleChange = (value: string) => {
+    const handleChange = (value: string): void => {
         // @ts-ignore
         const option: [sortOptionsType, orderByType, sortOptionsText] = value.split('/')
-        sortMovies({sort: option[0], order: option[1], page})
-        setSortValue(option[2])
+
+        sortMovies({sort: option[0], orderBy: option[1], page})
+        setSortText(option[2])
         dispatch(changePage(1))
+        dispatch(changeSortValues({sort: option[0], orderBY: option[1]}))
     };
 
     useEffect(() => {
@@ -45,19 +52,42 @@ const MoviesSortList: FC = () => {
         {sort: 'download_count', text: 'Downloads'},
     ]
 
+    const menu = (
+        <Menu
+            items={[
+                {
+                    key: '1', type: 'group', label: 'Desc',
+                    children: [...sortOptions.map(({sort, text}) => {
+                        return {
+                            key: `${sort}/desc/${text}`,
+                            label: <div>{text}</div>,
+                            onClick: ({key}: any) => handleChange(key)
+                        }
+                    })],
+                },
+                {
+                    key: '2', type: 'group', label: 'Asc',
+                    children: [...sortOptions.map(({sort, text}) => {
+                        return {
+                            key: `${sort}/asc/${text}`,
+                            label: <div>{text}</div>,
+                            onClick: ({key}: any) => handleChange(key)
+                        }
+                    })],
+                },
+            ]}
+        />
+    );
+
     return (
-        <Select defaultValue="Year" value={sortValue} className={'movieSortList'} onChange={handleChange}>
-            <OptGroup label="Descending">
-                {sortOptions.map(({sort, text}) =>
-                    <Option value={`${sort}/desc`} key={`${sort}desc`}>{text}</Option>
-                )}
-            </OptGroup>
-            <OptGroup label="Ascending">
-                {sortOptions.map(({sort, text}) =>
-                    <Option value={`${sort}/asc/${text}`} key={`${sort}asc`}>{text}</Option>
-                )}
-            </OptGroup>
-        </Select>
+        <Dropdown overlay={menu} trigger={['click']}>
+            <a onClick={e => e.preventDefault()}>
+                <Space>
+                    Sort by: <span className="dropdown-span">{sortText}</span>
+                    <DownOutlined/>
+                </Space>
+            </a>
+        </Dropdown>
     );
 };
 
