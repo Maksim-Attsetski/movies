@@ -1,6 +1,6 @@
 import React, {FC, useMemo, useState} from 'react';
 import style from './MyHeader.module.scss';
-import {NavLink, useNavigate} from "react-router-dom";
+import {NavLink, useLocation, useNavigate} from "react-router-dom";
 import {routeName} from "../Layout/routeName";
 import {useTypedDispatch, useTypedSelector} from "../../hooks/useRedux";
 import {changeTheme} from "../../redux/slices/themeSlice";
@@ -9,6 +9,7 @@ const MyHeader: FC = () => {
     const {HOME, FILMS, ABOUT} = routeName
     const dispatch = useTypedDispatch()
     const navigate = useNavigate()
+    const {pathname} = useLocation()
     const [burgerActive, setBurgerActive] = useState<boolean>(false)
     const {dark} = useTypedSelector(state => state.theme)
 
@@ -27,9 +28,24 @@ const MyHeader: FC = () => {
         setBurgerActive(false)
     })
 
-    const headerLinkClick = (event: any, to: string) => {
+    const headerLinkClick = (event: any, to: string): void => {
         event.preventDefault()
         navigate(to)
+        setBurgerActive(false)
+        document.body.classList.remove('overflow-hidden')
+    }
+
+    const pathIsExist: boolean = useMemo(() => {
+        let isExist: boolean = false
+        for (let key in routeName) {
+            // @ts-ignore
+            if (pathname === routeName[key]) isExist = true
+        }
+        return isExist
+    }, [pathname])
+
+    const handleBtnBackClick = (): void => {
+        window.history.back()
         setBurgerActive(false)
         document.body.classList.remove('overflow-hidden')
     }
@@ -52,6 +68,8 @@ const MyHeader: FC = () => {
                 </div>
 
                 <div className={style.theme}>
+                    {!pathIsExist && <button className='btn'
+                            onClick={handleBtnBackClick}>Back</button>}
                     <button className='btn'
                             onClick={() => dispatch(changeTheme())}>{dark ? 'Dark' : 'Light'}</button>
                 </div>

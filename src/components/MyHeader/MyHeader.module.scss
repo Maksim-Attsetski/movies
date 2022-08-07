@@ -18,6 +18,10 @@
   &Body {
     @apply flex justify-between items-center;
   }
+
+  .theme {
+    @apply flex gap-x-4
+  }
 }
 
 // header_links

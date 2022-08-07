@@ -36,7 +36,7 @@ const FilmDetail: FC = () => {
 
                     <div>Film duration: {getFilmDuration(film?.runtime || 0)}</div>
                     <div>Rating: {film?.rating} / 10</div>
-                    <div>MPA rating: {film?.mpa_rating}</div>
+                    {film?.mpa_rating && <div>MPA rating: {film?.mpa_rating}</div>}
                     <div>Likes: {film?.like_count}</div>
 
                     <br/>
