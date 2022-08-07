@@ -50,7 +50,7 @@ const FilmDetail: FC = () => {
                     >Watch trailer on YouTube
                     </a>
                     <motion.ul className={'flex gap-3 flex-wrap sm:justify-end'}
-                               variants={filmContainerAnim} initial={'initial'} animate={'animate'}>
+                               variants={filmContainerAnim} initial={'initial'} whileInView={'whileInView'}>
                         {film?.genres.map((genre) => (
                             <motion.li variants={filmItemAnim} key={genre} className={style.film_genre}>
                                 {genre}
@@ -61,7 +61,7 @@ const FilmDetail: FC = () => {
                         <br/>
                         <div className={'text-center sm:text-end text-xl mb-2'}>Torrents</div>
                         <motion.ul className={style.film_torrents}
-                                   variants={filmContainerAnim} initial={'initial'} animate={'animate'}>
+                                   variants={filmContainerAnim} initial={'initial'} whileInView={'whileInView'}>
                             {film?.torrents.map((torrent) =>
                                 <motion.a
                                     variants={filmItemAnim} key={torrent.hash} className={style.film_genre}
@@ -84,7 +84,7 @@ const FilmDetail: FC = () => {
 
                 <Loading isLoading={loading} isError={error} className={style.film_suggestions}>
                     <Divider className={style.divider}/>
-                    <div>Recommended for you:</div>
+                    <div>Recommended with this film:</div>
                     <br/>
                     <div className={style.film_suggestions_films}>
                         {suggestions?.length > 0

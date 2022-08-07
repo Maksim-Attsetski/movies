@@ -4,7 +4,7 @@ export const filmItemAnim = {
         x: -50,
         opacity: 0.3,
     },
-    animate: {
+    whileInView: {
         x: 0,
         opacity: 1,
         transition: {
