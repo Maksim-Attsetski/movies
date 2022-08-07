@@ -35,7 +35,7 @@ const BestMovies: FC = () => {
                     modules={[Navigation]} loop={true}
                     navigation={{nextEl: "#swiper-forward", prevEl: "#swiper-back"}}
                     onSlideChange={({realIndex}) => setSlideIndex(realIndex)}
-                    autoplay={{delay: slideIndex === 6 ? 400 : 3500, pauseOnMouseEnter: slideIndex !== 6}}
+                    autoplay={{delay: slideIndex === 6 ? 400 : 3500, disableOnInteraction: true}}
                 >
                     {bestMovies.map((movie) =>
                         <SwiperSlide key={movie.id}>
