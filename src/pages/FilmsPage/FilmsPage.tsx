@@ -4,9 +4,9 @@ import {Divider} from "antd";
 import AllMovies from "../../components/AllMovies/AllMovies";
 import {movieApi} from "../../redux/services/movieApi";
 import {IMovie} from "../../types/movie";
-import Loading from "../../components/Loading/Loading";
+import Loading from "../../components/UI/Loading/Loading";
 import SearchIcon from "../../assets/icons/SearchIcon";
-import MyPagination from "../../components/MyPagination/MyPagination";
+import MyPagination from "../../components/UI/MyPagination/MyPagination";
 import {useTypedDispatch, useTypedSelector} from "../../hooks/useRedux";
 import {changePage, changeTotalMoviesCount, setAllMovies} from "../../redux/slices/movieSlice";
 

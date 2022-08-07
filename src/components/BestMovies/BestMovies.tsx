@@ -9,7 +9,7 @@ import RightArrowIcon from "../../assets/icons/RightArrowIcon";
 import {Navigation} from "swiper";
 import {Link} from "react-router-dom";
 import {routeName} from "../Layout/routeName";
-import Loading from "../Loading/Loading";
+import Loading from "../UI/Loading/Loading";
 import {useTypedDispatch, useTypedSelector} from "../../hooks/useRedux";
 import {setBestMovies} from "../../redux/slices/movieSlice";
 

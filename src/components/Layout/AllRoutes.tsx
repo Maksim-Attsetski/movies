@@ -6,7 +6,7 @@ import HomePage from "../../pages/HomePage/HomePage";
 import FilmsPage from "../../pages/FilmsPage/FilmsPage";
 import {useTypedDispatch} from "../../hooks/useRedux";
 import {setTheme} from "../../redux/slices/themeSlice";
-import Film from "../Film/Film";
+import FilmDetail from "../FilmDetail/FilmDetail";
 import AboutPage from "../../pages/AboutPage/AboutPage";
 
 const AllRoutes: FC = () => {
@@ -25,7 +25,7 @@ const AllRoutes: FC = () => {
             <Route path={HOME} element={<MyLayout/>}>
                 <Route path={HOME} element={<HomePage/>}/>
                 <Route path={FILMS} element={<FilmsPage/>}/>
-                <Route path={FILMS + ':id'} element={<Film/>}/>
+                <Route path={FILMS + ':id'} element={<FilmDetail/>}/>
                 <Route path={ABOUT} element={<AboutPage/>}/>
             </Route>
         </Routes>

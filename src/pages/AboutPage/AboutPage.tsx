@@ -1,18 +1,18 @@
-import {motion} from 'framer-motion';
 import React, {FC} from 'react';
 import style from './AboutPage.module.scss';
-import {appearRightAnim} from "../../animations/appear-right-anim";
+import MyTitle from "../../components/UI/MyTitle/MyTitle";
+import {useTypedSelector} from "../../hooks/useRedux";
 
 const AboutPage: FC = () => {
+    const {total} = useTypedSelector(state => state.movies)
     const technologies: string[] = [
         'React (Redux)', 'Ant Design', 'Tailwind CSS', 'TypeScript', 'Framer motion',
     ]
 
     return (
         <div className={style.aboutPage + ' container'}>
-            <motion.div {...appearRightAnim} className={style.aboutPage_title}>
-                Something interesting about my site
-            </motion.div>
+            <MyTitle className={style.aboutPage_title} text={'Something interesting about my site'}/>
+
             <div className={style.aboutPage_item}>
                 This site work on Web API:
                 <a href="https://yts.mx/api" rel="noreferrer" target={'_blank'}> yts.mx</a>
@@ -29,6 +29,9 @@ const AboutPage: FC = () => {
                     </span>
                 )}
             </div>
+            {total > 0 && <div className={style.aboutPage_item}>
+                Total movies count: <a href="#">{(total).toLocaleString()}</a>
+            </div>}
         </div>
     );
 };

@@ -5,7 +5,7 @@ const baseUrl: string = 'https://yts.mx/api/v2/';
 export const movieApi = createApi({
     reducerPath: 'movieApi',
     baseQuery: fetchBaseQuery({baseUrl}),
-    tagTypes: ['Movies', 'BestMovies', 'Film'],
+    tagTypes: ['Movies', 'BestMovies', 'FilmDetail', 'FilmSuggestions'],
     endpoints: (build) => ({
         getAllMovie: build.query<any, number>({
             query: (page: number = 1) => ({
@@ -30,10 +30,17 @@ export const movieApi = createApi({
         }),
         getFilm: build.query<any, number>({
             query: (id: number) => ({
-                url: 'movie_details.json/',
+                url: 'movie_details.json',
                 params: {movie_id: id}
             }),
-            providesTags: result => ['Film'],
+            providesTags: result => ['FilmDetail'],
+        }),
+        getFilmSuggestions: build.query<any, number>({
+            query: (id: number) => ({
+                url: 'movie_suggestions.json',
+                params: {movie_id: id}
+            }),
+            providesTags: result => ['FilmSuggestions'],
         }),
     })
 })

@@ -2,22 +2,17 @@ import React, {FC} from 'react';
 import style from './HomePage.module.scss';
 import BestMovies from "../../components/BestMovies/BestMovies";
 import {Divider} from "antd";
-import {appearRightAnim} from "../../animations/appear-right-anim";
-import { motion } from 'framer-motion';
+import MyTitle from "../../components/UI/MyTitle/MyTitle";
 
 const HomePage: FC = () => {
     return (
         <div className={style.homePage}>
             <div className={style.homePageBody + ' container'}>
-                <motion.div {...appearRightAnim} className={style.homePage_title}>
-                    Welcome!
-                    <br/>
-                    Your can search any movies here.
-                </motion.div>
+                <MyTitle text={'Welcome! Your can search any movies here.'} className={style.homePage_title}/>
             </div>
             <Divider/>
             <div className="container">
-                <div className={style.homePage_title + ' ' + style.bestMovies_title}>Best movies</div>
+                <MyTitle text={'The best movies'} className={style.bestMovies_title}/>
                 <BestMovies/>
             </div>
         </div>

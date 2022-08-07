@@ -3,7 +3,8 @@
   @apply grid gap-3;
   grid-template:
       'img content'
-      'des des';
+      'des des'
+      'sug sug';
   @media (max-width: 640px) {
     @apply flex flex-col items-center;
     .film_content {
@@ -13,6 +14,7 @@
       @apply text-center;
     }
   }
+
   &_image {
     width: 300px;
     grid-area: img;
@@ -26,21 +28,40 @@
 
   &_description {
     grid-area: des;
-    .divider {
-      @apply border-t-dark-text-hover dark:border-t-light-text-hover
-    }
   }
+
   &_title {
-    @apply text-3xl text-end;
+    @apply text-end;
   }
+
   a:hover {
     @apply text-brand-red;
   }
+
+  &_torrents {
+    @apply flex gap-3 flex-wrap;
+    a:hover {
+      @apply border-transparent bg-brand-red text-dark-text;
+    }
+  }
+
   &_genre {
     @apply border-2 border-brand-red p-2 h-max rounded-3xl flex justify-center items-center flex-wrap cursor-text;
     transition: all linear 0.2s;
+
     &:hover {
       @apply border-transparent bg-brand-red text-dark-text;
     }
+  }
+
+  &_suggestions {
+    grid-area: sug;
+    &_films {
+      @apply flex flex-wrap justify-around gap-6;
+    }
+  }
+
+  .divider {
+    @apply border-t-dark-text-hover dark:border-t-light-text-hover
   }
 }
